@@ -1,6 +1,5 @@
 package org.bwojtal.springzalapp.dto;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonPropertyOrder(value = { "id" }, alphabetic = true)
-public class UserDTO {
+public class PlaneDTO {
     private Long id;
-    private String username;
-    private String role;
+    private String brand;
+    private String series;
+    private String registration;
+    private Long airlineId;
 }

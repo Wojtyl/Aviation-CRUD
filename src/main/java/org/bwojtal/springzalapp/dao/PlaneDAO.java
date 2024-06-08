@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserDAO {
+public class PlaneDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -16,7 +16,7 @@ public class UserDAO {
     public List<User> findByRole(String role) {
 
         return entityManager
-                .createQuery("from User u where lower(u.role) = :role", User.class)
+                .createQuery("from Plane where", User.class)
                 .setParameter("role", role.toLowerCase())
                 .getResultList();
     }
