@@ -25,8 +25,12 @@ public class PlaneService {
         return planeMapper.planeListToPlaneDTOs(planeRepository.findAll());
     }
 
-    public PlaneDTO findById(Long id) {
+    public PlaneDTO getPlaneDTOById(Long id) {
         return planeMapper.planeToPlaneDTO(planeRepository.findById(id).orElseThrow(() -> new NotFoundException("Plane not found")));
+    }
+
+    public Plane getPlaneById(Long id) {
+        return planeRepository.findById(id).orElseThrow(() -> new NotFoundException("Plane not found"));
     }
 
     @Transactional

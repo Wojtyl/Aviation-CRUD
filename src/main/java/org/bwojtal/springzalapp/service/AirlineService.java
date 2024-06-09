@@ -37,4 +37,8 @@ public class AirlineService {
         System.out.println("Ailine ID: !!!" + airlineId);
         return airlineRepository.findById(airlineId).orElseThrow(() -> new NotFoundException("Airline with that ID not found"));
     }
+
+    public void deleteAirline(Long id) {
+        airlineRepository.deleteById(id);
+    }
 }

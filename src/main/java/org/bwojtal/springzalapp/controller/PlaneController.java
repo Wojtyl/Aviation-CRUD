@@ -32,7 +32,7 @@ public class PlaneController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<PlaneDTO> getPlaneById(@PathVariable Long id) {
-        PlaneDTO planeDTO = planeService.findById(id);
+        PlaneDTO planeDTO = planeService.getPlaneDTOById(id);
 
         return ResponseEntity.ok(planeDTO);
     }
