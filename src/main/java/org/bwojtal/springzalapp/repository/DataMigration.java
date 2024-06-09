@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class DataMigration implements CommandLineRunner  {
 
     @Autowired
-    private UserRepo userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private PlaneRepository planeRepository;

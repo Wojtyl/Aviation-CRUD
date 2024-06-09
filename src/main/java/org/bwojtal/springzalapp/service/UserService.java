@@ -7,7 +7,7 @@ import org.bwojtal.springzalapp.exception.NotFoundException;
 import org.bwojtal.springzalapp.form.UserForm;
 import org.bwojtal.springzalapp.mapper.UserMapper;
 import org.bwojtal.springzalapp.entity.User;
-import org.bwojtal.springzalapp.repository.UserRepo;
+import org.bwojtal.springzalapp.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +25,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService{
 
-    private final UserRepo userRepo;
+    private final UserRepository userRepo;
     private final UserMapper userMapper;
 
     @Override
