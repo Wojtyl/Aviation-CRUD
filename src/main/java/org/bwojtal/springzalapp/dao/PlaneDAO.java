@@ -12,12 +12,4 @@ public class PlaneDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    public List<User> findByRole(String role) {
-
-        return entityManager
-                .createQuery("from Plane where", User.class)
-                .setParameter("role", role.toLowerCase())
-                .getResultList();
-    }
 }
