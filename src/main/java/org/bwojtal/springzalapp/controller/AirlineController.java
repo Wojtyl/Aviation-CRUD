@@ -77,7 +77,7 @@ public class AirlineController {
         return ResponseEntity.ok(planeDTO);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteAirline(@PathVariable Long id) {
         if (!airlineService.checkIfAirlineExists(id)) {

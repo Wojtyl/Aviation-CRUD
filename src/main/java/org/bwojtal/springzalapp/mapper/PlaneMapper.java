@@ -17,7 +17,9 @@ public class PlaneMapper {
     public List<PlaneDTO> planeListToPlaneDTOs(List<Plane> planes) {
         List<PlaneDTO> planeDTOS = new ArrayList<>();
 
-        planes.forEach(plane -> planeDTOS.add(planeToPlaneDTO(plane)));
+        if (planes != null) {
+            planes.forEach(plane -> planeDTOS.add(planeToPlaneDTO(plane)));
+        }
 
         return planeDTOS;
     }

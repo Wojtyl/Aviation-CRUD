@@ -6,6 +6,7 @@ import org.bwojtal.springzalapp.entity.Airline;
 import org.bwojtal.springzalapp.exception.NotFoundException;
 import org.bwojtal.springzalapp.mapper.AirlineMapper;
 import org.bwojtal.springzalapp.repository.AirlineRepository;
+import org.bwojtal.springzalapp.repository.PlaneRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 public class AirlineService {
     private final AirlineRepository airlineRepository;
     private final AirlineMapper airlineMapper;
+    private final PlaneRepository planeRepository;
 
     public List<AirlineDTO> findAllAirlineDTOs() {
         return airlineMapper.airlineListToAirlineDTOs(airlineRepository.findAll());
@@ -24,8 +26,8 @@ public class AirlineService {
         return airlineMapper.airlineToAirlineDTO(airlineRepository.findById(id).orElseThrow(() -> new NotFoundException("Airline with that ID not found")));
     }
 
-    public void createAirline(AirlineDTO airlineDTO) {
-        airlineRepository.save(airlineMapper.airlineDTOtoAirline(airlineDTO));
+    public AirlineDTO createAirline(AirlineDTO airlineDTO) {
+        return airlineMapper.airlineToAirlineDTO(airlineRepository.save(airlineMapper.airlineDTOtoAirline(airlineDTO)));
     }
 
 
@@ -34,11 +36,17 @@ public class AirlineService {
     }
 
     public Airline findAirlineById(Long airlineId) {
-        System.out.println("Ailine ID: !!!" + airlineId);
         return airlineRepository.findById(airlineId).orElseThrow(() -> new NotFoundException("Airline with that ID not found"));
     }
 
     public void deleteAirline(Long id) {
+        Airline airline = findAirlineById(id);
+
+        airline.getPlanes().forEach(plane -> {
+            plane.setAirline(null);
+            planeRepository.save(plane);
+        });
+
         airlineRepository.deleteById(id);
     }
 }

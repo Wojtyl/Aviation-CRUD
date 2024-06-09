@@ -77,7 +77,10 @@ public class PlaneService {
     }
 
     public PlaneDTO createPlane(PlaneDTO planeDTO) {
-        Airline airline = airlineService.findAirlineById(planeDTO.getAirlineId());
+        Airline airline = null;
+        if (planeDTO.getAirlineId() != null) {
+            airline = airlineService.findAirlineById(planeDTO.getAirlineId());
+        }
         Plane plane = planeMapper.planeDTOToPlane(planeDTO, airline);
 
         return planeMapper.planeToPlaneDTO(planeRepository.save(plane));
